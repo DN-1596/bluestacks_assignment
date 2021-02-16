@@ -1,7 +1,3 @@
-
-
-
-
 // States
 
 import 'package:bluestacks_assignment/authenticate/authenticate.dart';
@@ -19,7 +15,6 @@ class WrapperCubit extends Cubit<WrapperState> {
   User user;
   Box<User> _userBox;
 
-
   WrapperCubit() : super(WrapperLoadingPlaceHolder()) {
     initializeApp();
   }
@@ -33,7 +28,6 @@ class WrapperCubit extends Cubit<WrapperState> {
   }
 
   checkIfUserExists() async {
-
     if (_userBox.values.isEmpty) {
       emit(AuthenticateBasePage());
     } else {
@@ -46,5 +40,6 @@ class WrapperCubit extends Cubit<WrapperState> {
     user = _userBox.getAt(0);
   }
 
-
+  bool verifyUserCred(String uid, String pwd) =>
+      sl.get<UserRepoService>().verifyUserCred(uid, pwd);
 }
