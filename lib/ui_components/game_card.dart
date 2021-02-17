@@ -1,7 +1,13 @@
 import 'package:animations/animations.dart';
+import 'package:bluestacks_assignment/db/db.dart';
 import 'package:flutter/material.dart';
 
 class GameCard extends StatelessWidget {
+
+  final Tournament tournament;
+
+  GameCard(this.tournament);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,7 +53,7 @@ class GameCard extends StatelessWidget {
                       child:  LayoutBuilder(
                         builder: (context, constraints) {
                           return Image.network(
-                            "https://cdn.game.tv/tournaments/prod/game/com.dts.freefireth_Genric.jpg",
+                            tournament.coverUrl,
                             fit: BoxFit.cover,
                             width: constraints.maxWidth,
                           );
@@ -78,7 +84,7 @@ class GameCard extends StatelessWidget {
                 child:  LayoutBuilder(
                   builder: (context, constraints) {
                     return Image.network(
-                      "https://cdn.game.tv/tournaments/prod/game/com.dts.freefireth_Genric.jpg",
+                      tournament.coverUrl,
                       fit: BoxFit.cover,
                       width: constraints.maxWidth,
                     );

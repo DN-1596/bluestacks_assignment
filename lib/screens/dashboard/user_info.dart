@@ -124,15 +124,15 @@ class UserInfoDelegate extends SliverPersistentHeaderDelegate {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(user.eloRating.toString(),
                                   style: Theme.of(context).textTheme.getSubHeaderStyle(
                                       color: Theme.of(context).primaryColor)),
                               SizedBox(width: 8.0,),
                               Text("ELO_RATING",
-                                  style: Theme.of(context).textTheme.getSubHeaderStyle(
-                                      color: Theme.of(context).primaryColor))
+                                  style: Theme.of(context).textTheme.getContentStyle(
+                                      color: Theme.of(context).secondaryHeaderColor))
                             ],
                           ),
                         ),
