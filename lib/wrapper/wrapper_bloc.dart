@@ -39,7 +39,7 @@ class WrapperCubit extends Cubit<WrapperState> {
 
   getInitialState() {
     user = _userBox.getAt(0);
-    emit(Dashboard());
+    emit(Dashboard(user));
   }
 
   bool verifyUserCred(String uid, String pwd) =>

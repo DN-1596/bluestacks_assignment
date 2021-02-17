@@ -77,6 +77,8 @@ flutter:
      - assets/gametvlogo2.svg
      - assets/amongus2.jpeg
      - assets/among-us-wallpaper.jpg
+     - assets/drawerlogo.svg
+     - assets/profilepic.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
