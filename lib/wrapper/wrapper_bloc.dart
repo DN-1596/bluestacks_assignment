@@ -1,7 +1,9 @@
 // States
 
-import 'package:bluestacks_assignment/authenticate/authenticate.dart';
+
 import 'package:bluestacks_assignment/db/db.dart';
+import 'package:bluestacks_assignment/screens/authenticate/authenticate.dart';
+import 'package:bluestacks_assignment/screens/dashboard/dashboard.dart';
 import 'package:bluestacks_assignment/services/services.dart';
 import 'package:bluestacks_assignment/ui_components/ui_components.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,15 +33,28 @@ class WrapperCubit extends Cubit<WrapperState> {
     if (_userBox.values.isEmpty) {
       emit(AuthenticateBasePage());
     } else {
-      await getInitialState();
+      getInitialState();
     }
   }
 
-  Future<void> getInitialState() async {
-    emit(WrapperLoadingPlaceHolder());
+  getInitialState() {
     user = _userBox.getAt(0);
+    emit(Dashboard());
   }
 
   bool verifyUserCred(String uid, String pwd) =>
       sl.get<UserRepoService>().verifyUserCred(uid, pwd);
+
+  Future<bool> loginUser(String uid) async {
+    emit(WrapperLoadingPlaceHolder(message: "LOADING USER",));
+    await sl.get<UserRepoService>().loadUserCred(uid);
+    checkIfUserExists();
+  }
+
+  Future<void> signOut() async {
+    await sl.get<UserRepoService>().signOut();
+    checkIfUserExists();
+  }
+
+
 }

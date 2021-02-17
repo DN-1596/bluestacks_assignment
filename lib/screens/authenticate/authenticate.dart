@@ -1,5 +1,7 @@
-import 'package:bluestacks_assignment/authenticate/login_background.dart';
-import 'package:bluestacks_assignment/authenticate/proceed_button.dart';
+
+
+import 'package:bluestacks_assignment/screens/authenticate/proceed_button.dart';
+import 'package:bluestacks_assignment/ui_components/ui_components.dart';
 import 'package:bluestacks_assignment/wrapper/wrapper_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +16,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
   final TextEditingController _pwdCtrl = new TextEditingController();
   final ValueNotifier<int> _uidStatus = new ValueNotifier(0);
   final ValueNotifier<int> _pwdStatus = new ValueNotifier(0);
-  final ValueNotifier<bool> _formStatus = new ValueNotifier(false);
+  final ValueNotifier<bool> _formStatus = new ValueNotifier(true);
   final String kErrorText = "ENTRY_SHOULD_BE_OF_MIN_3_CHARACTERS_AND_MAX_10";
 
   @override
@@ -22,7 +24,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
     return KeyboardDismisser(
         child: Stack(
           children: [
-            LoginBackground(),
+            BackgroundIMG("assets/pubgwallpaper.jpg"),
             SafeArea(
               child: Scaffold(
                 backgroundColor: Colors.transparent,
@@ -199,7 +201,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
       Theme
           .of(context)
           .textTheme
-          .getSubHeaderStyle(color: Colors.red.shade100, size: 10);
+          .getSubHeaderStyle(color: Colors.red.shade100, size: 12);
 
   TextStyle hintStyle(BuildContext context) =>
       Theme

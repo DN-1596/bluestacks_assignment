@@ -10,6 +10,8 @@ void setUpServices() {
   sl.registerLazySingleton<UserRepoService>(() => UserRepoService());
   sl.registerLazySingleton<TournamentRepoService>(
       () => TournamentRepoService());
+  sl.registerLazySingleton<NetworkService>(
+          () => NetworkService());
 }
 
 setUpHive() async {

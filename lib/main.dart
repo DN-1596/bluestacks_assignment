@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       title: 'Game.TV',
       theme: baseLightTheme(),
       home: Wrapper(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

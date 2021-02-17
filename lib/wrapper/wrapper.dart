@@ -21,8 +21,23 @@ class WrapperChannel extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WrapperCubit,WrapperState>(
         builder: (context,state) {
-          return state as Widget;
+          return _switchState(state as Widget);
         });
   }
+
+  Widget _switchState(Widget state) {
+    return AnimatedSwitcher(
+      child: state,
+      duration: Duration(milliseconds: 500),
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        return FadeTransition(
+          opacity: Tween<double>(begin: 0.0, end: 1.0).animate(animation),
+          child: child,
+        );
+      },
+    );
+  }
+
+
 }
 

@@ -44,6 +44,9 @@ class ProceedButton extends StatelessWidget {
                         onPressed: () {
                           print("LOGIN PRESSED");
                           formStatus.value = BlocProvider.of<WrapperCubit>(context).verifyUserCred(uid, pwd);
+                          if (formStatus.value) {
+                            BlocProvider.of<WrapperCubit>(context).loginUser(uid);
+                          }
                         },
                         child: Center(
                           child: Text(

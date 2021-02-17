@@ -2,7 +2,12 @@
 
 import 'package:flutter/material.dart';
 
-class LoginBackground extends StatelessWidget {
+class BackgroundIMG extends StatelessWidget {
+
+  final String imagePath;
+
+  BackgroundIMG(this.imagePath);
+
   @override
   Widget build(BuildContext context) {
     return ShaderMask(
@@ -15,7 +20,7 @@ class LoginBackground extends StatelessWidget {
       child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage("assets/pubgwallpaper.jpg"),
+              image: AssetImage(imagePath),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(Colors.black12, BlendMode.darken)
             ),
