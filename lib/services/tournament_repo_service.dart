@@ -14,13 +14,9 @@ class TournamentRepoService {
     Pair<List<Map<String, dynamic>>, String> response =
         await sl.get<NetworkService>().fetchTournamentData(cursor);
 
-    if (response == null) throw "ERROR in FETCHING TOURNAMENTS";
+    log("TOURNAMENT RESPONSE COUNT --------------->>> ${response.first?.length}");
 
     Box tournamentBox = getTournamentBox();
-
-    if (cursor == null) {
-      tournamentBox.clear();
-    }
 
     response.first?.forEach((element) {
       try {
@@ -29,6 +25,8 @@ class TournamentRepoService {
         log("ERROR!! LOADING TOURNAMENT IN HIVE - \n TOURNAMENT - ${element.toString()} \n $e");
       }
     });
+
+    log("TOURNAMENT HIVE COUNT --------------->>> ${tournamentBox.values.length}");
 
     return response.second;
   }

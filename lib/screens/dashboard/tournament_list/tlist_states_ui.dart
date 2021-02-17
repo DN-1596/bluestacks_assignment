@@ -1,5 +1,5 @@
 import 'package:bluestacks_assignment/screens/dashboard/tournament_list/tlist_loaded.dart';
-import 'package:bluestacks_assignment/screens/dashboard/tournament_list/tournament_list_cubit.dart';
+import 'package:bluestacks_assignment/screens/dashboard/tournament_list/tournament_list_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -7,27 +7,24 @@ import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.d
 import 'package:flutter_svg/flutter_svg.dart';
 
 class TournamentListStateUI extends StatelessWidget {
-  final TournamentListState listState;
+  final int listState;
 
   TournamentListStateUI(this.listState);
 
   @override
   Widget build(BuildContext context) {
-    switch (listState) {
-      case TournamentListState.Error:
-        return TournamentListEmptyOrError("ERROR_IN_LOADING_TOURNAMENTS");
-      case TournamentListState.Loading:
-        return TournamentListLoading();
-      case TournamentListState.Loaded:
-        return TListLoaded(
-            BlocProvider.of<TournamentListCubit>(context).tList, false);
-      case TournamentListState.Ended:
-        return TListLoaded(
-            BlocProvider.of<TournamentListCubit>(context).tList, true);
-      case TournamentListState.Empty:
-      default:
-        return TournamentListEmptyOrError("TOURNAMENTS_LIST_EMPTY");
-    }
+    if (listState == -2)
+      return TournamentListLoading();
+    else if (listState == -1)
+      return TournamentListEmptyOrError("ERROR_IN_LOADING_TOURNAMENTS");
+    else if (listState == 0)
+      return TournamentListEmptyOrError("TOURNAMENTS_LIST_EMPTY");
+    else if (listState == 1)
+      return TListLoaded(
+          BlocProvider.of<TournamentListBloc>(context).tList, true);
+    else
+      return TListLoaded(
+          BlocProvider.of<TournamentListBloc>(context).tList, false);
   }
 }
 
