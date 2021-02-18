@@ -6,6 +6,7 @@ import 'package:bluestacks_assignment/screens/dashboard/dashboard.dart';
 import 'package:bluestacks_assignment/services/services.dart';
 import 'package:bluestacks_assignment/ui_components/ui_components.dart';
 import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 
@@ -21,6 +22,7 @@ class WrapperCubit extends Cubit<WrapperState> {
       : super(WrapperLoadingPlaceHolder(
           backgroundSvgPath: "assets/gametvlogo2.svg",
         )) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     initializeApp();
   }
 
