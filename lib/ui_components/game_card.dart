@@ -123,7 +123,7 @@ class GameCard extends StatelessWidget {
                   fit: FlexFit.tight,
                   flex: 2,
                   child: Container(
-                    color: Theme.of(context).backgroundColor,
+                    color: Theme.of(context).cardColor,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16.0, vertical: 8.0),

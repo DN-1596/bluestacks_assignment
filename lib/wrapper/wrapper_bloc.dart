@@ -6,6 +6,7 @@ import 'package:bluestacks_assignment/screens/authenticate/authenticate.dart';
 import 'package:bluestacks_assignment/screens/dashboard/dashboard.dart';
 import 'package:bluestacks_assignment/services/services.dart';
 import 'package:bluestacks_assignment/ui_components/ui_components.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 
@@ -53,6 +54,13 @@ class WrapperCubit extends Cubit<WrapperState> {
 
   Future<void> signOut() async {
     await sl.get<UserRepoService>().signOut();
+    checkIfUserExists();
+  }
+
+  changeLanguage(String language) async {
+    emit(WrapperLoadingPlaceHolder(message: "LOADING IN $language",));
+    await Hive.box<String>(kLanguagePref).clear();
+    await Hive.box<String>(kLanguagePref).add(language);
     checkIfUserExists();
   }
 

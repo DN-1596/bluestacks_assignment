@@ -1,5 +1,6 @@
 import 'package:bluestacks_assignment/db/db.dart';
 import 'package:bluestacks_assignment/services/services.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path;
@@ -25,4 +26,12 @@ setUpHive() async {
 
   if (!Hive.isBoxOpen(kTournamentBox))
     await Hive.openBox<Tournament>(kTournamentBox);
+
+  if (!Hive.isBoxOpen(kLanguagePref))
+    await Hive.openBox<String>(kLanguagePref);
+  
+  if (Hive.box<String>(kLanguagePref).isEmpty) {
+    await Hive.box<String>(kLanguagePref).add(kEnglish);
+  }
+  
 }
