@@ -55,13 +55,16 @@ class TournamentListBloc
         tList = List<Tournament>.from(tournamentBox.values) ?? <Tournament>[];
       } catch (e) {
         log("ERROR!!  IN FETCHING TOURNAMENTS  - $e");
-        if (cursor == null) {
-          yield  -1;
-        }
+        _cursor = "ERROR";
+
       }
 
       if (_cursor == "ERROR") {
-        yield -1;
+        if (cursor == null) {
+          yield -1;
+        } else {
+          yield 1;
+        }
       } else {
         cursor = _cursor;
         if (tList.length == 0) {

@@ -108,6 +108,7 @@ class TournamentListEmptyOrError extends StatelessWidget {
                 message,
                 style: Theme.of(context).textTheme.getContentStyle(
                     color: Theme.of(context).secondaryHeaderColor,size: 14),
+                textAlign: TextAlign.center,
               ),
             ),
           ),

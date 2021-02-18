@@ -35,14 +35,13 @@ class NetworkService {
         Map<String, dynamic> rslt = jsonDecode(response.body);
         _tList = List<Map<String, dynamic>>.from(rslt["data"]["tournaments"]);
         _cursor = rslt["data"]["cursor"];
+        return Pair(_tList, _cursor);
       } catch (e) {
         log("ERROR!! DECODING TOURNAMENTS JSON - " + e.toString());
       }
     } else {
       log("ERROR!! IN TOURNAMENT RESPONSE - ${response.statusCode} ");
-      return null;
     }
-
-    return Pair(_tList, _cursor);
+    return null;
   }
 }
