@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:animations/animations.dart';
 import 'package:bluestacks_assignment/db/db.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +33,7 @@ class GameCard extends StatelessWidget {
               margin: const EdgeInsets.only(bottom: 3.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
-                color: Colors.red,
+                color: Theme.of(context).cardColor,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.4),
@@ -52,11 +54,42 @@ class GameCard extends StatelessWidget {
                       flex: 3,
                       child: LayoutBuilder(
                         builder: (context, constraints) {
-                          return Image.network(
-                            tournament.coverUrl,
-                            fit: BoxFit.cover,
-                            width: constraints.maxWidth,
-                          );
+                          return Image.network(tournament.coverUrl,
+                              fit: BoxFit.cover, width: constraints.maxWidth,
+                              errorBuilder: (BuildContext context,
+                                  Object exception, StackTrace stackTrace) {
+                            log("ERROR!! loading image -- $exception");
+
+                            return Container(
+                              decoration: BoxDecoration(
+                                  border: Border(
+                                      bottom: BorderSide(
+                                          color: Theme.of(context).primaryColor,
+                                          width: 2))),
+                              child: Center(
+                                child: Icon(
+                                  Icons.image_rounded,
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                              ),
+                            );
+                          }, loadingBuilder: (BuildContext context,
+                                  Widget child,
+                                  ImageChunkEvent loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes
+                                    : null,
+                                backgroundColor: Theme.of(context).hintColor,
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Theme.of(context).accentColor),
+                              ),
+                            );
+                          });
                         },
                       ),
                     ),
@@ -76,7 +109,8 @@ class GameCard extends StatelessWidget {
                                 Flexible(
                                   fit: FlexFit.tight,
                                   flex: 7,
-                                  child: _tournamentInfo(context,mainAxisSize: MainAxisSize.max),
+                                  child: _tournamentInfo(context,
+                                      mainAxisSize: MainAxisSize.max),
                                 ),
                                 Flexible(
                                   fit: FlexFit.tight,
@@ -144,7 +178,8 @@ class GameCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        title: _tournamentInfo(context,mainAxisSize: MainAxisSize.min,softWrap: true),
+                        title: _tournamentInfo(context,
+                            mainAxisSize: MainAxisSize.min, softWrap: true),
                       ),
                     ),
                   )),
@@ -155,7 +190,8 @@ class GameCard extends StatelessWidget {
     );
   }
 
-  Widget _tournamentInfo(BuildContext context,{MainAxisSize mainAxisSize,bool softWrap = false}) {
+  Widget _tournamentInfo(BuildContext context,
+      {MainAxisSize mainAxisSize, bool softWrap = false}) {
     return Column(
       mainAxisSize: mainAxisSize,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,

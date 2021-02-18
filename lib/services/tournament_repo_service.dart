@@ -14,11 +14,13 @@ class TournamentRepoService {
     Pair<List<Map<String, dynamic>>, String> response =
         await sl.get<NetworkService>().fetchTournamentData(cursor);
 
+    if (response == null) return "ERROR";
+
     log("TOURNAMENT RESPONSE COUNT --------------->>> ${response.first?.length}");
 
-    Box tournamentBox = getTournamentBox();
+    Box<Tournament> tournamentBox = getTournamentBox();
 
-    response.first?.forEach((element) {
+    response?.first?.forEach((element) {
       try {
         tournamentBox.add(Tournament.fromMap(element));
       } catch(e) {
@@ -28,6 +30,6 @@ class TournamentRepoService {
 
     log("TOURNAMENT HIVE COUNT --------------->>> ${tournamentBox.values.length}");
 
-    return response.second;
+    return response?.second;
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bluestacks_assignment/ui_components/ui_components.dart';
 import 'package:bluestacks_assignment/utilities/localization/localization.dart';
 import 'package:bluestacks_assignment/wrapper/wrapper_bloc.dart';
@@ -78,7 +80,7 @@ class CustomDrawer extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    "SIGN_OUT",
+                    "SIGN_OUT".localized(),
                     style: Theme.of(context).textTheme.getSubHeaderStyle(
                         color: Theme.of(context).secondaryHeaderColor),
                   ),
@@ -100,6 +102,8 @@ class CustomDrawer extends StatelessWidget {
 
         String selectedValue = value.getAt(0);
 
+        log("language changed!!! ---->> $selectedValue");
+
         return Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -108,14 +112,14 @@ class CustomDrawer extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                "PREFERRED_LANGUAGE",
+                "PREFERRED_LANGUAGE".localized(),
                 style: Theme.of(context).textTheme.getSubHeaderStyle(
                     color: Theme.of(context).secondaryHeaderColor),
               ),
               DropdownButton<String>(
                 value: selectedValue,
                 hint: Text(
-                  "SELECT_LANGUAGE",
+                  "SELECT_LANGUAGE".localized(),
                   style: Theme.of(context).textTheme.getContentStyle(
                       color: Theme.of(context).secondaryHeaderColor),
                 ),

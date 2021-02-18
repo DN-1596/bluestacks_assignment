@@ -1,6 +1,8 @@
 import 'package:bluestacks_assignment/db/db.dart';
 import 'package:flutter/material.dart';
 import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+
 
 class StatsCard extends StatelessWidget {
   final height;
@@ -37,12 +39,12 @@ class StatsCard extends StatelessWidget {
           children: [
             _dataWidget(context,
                 data: user.tPlayed?.toString(),
-                dataType: "TOURNAMENTS\nPLAYED",
+                dataType: "TOURNAMENTS\nPLAYED".localized(),
                 start: Color(0xffd18c49),
                 end: Color(0xffd3a450)),
             _dataWidget(context,
                 data: user.tWon?.toString(),
-                dataType: "TOURNAMENTS\nWON",
+                dataType: "TOURNAMENTS\nWON".localized(),
                 start: Color(0xff553894),
                 end: Color(0xff8152a6),
                 showBorder: true),
@@ -51,7 +53,7 @@ class StatsCard extends StatelessWidget {
                         .floor()
                         .toString() +
                     "%",
-                dataType: "WINNING\nPERCENTAGE",
+                dataType: "WINNING\nPERCENTAGE".localized(),
                 start: Color(0xffca6357),
                 end: Color(0xffdc845c))
           ],

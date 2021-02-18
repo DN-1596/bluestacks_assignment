@@ -23,7 +23,7 @@ class TournamentListBloc
     extends Bloc<TournamentListEvent, int> {
   List<Tournament> tList = new List();
   String cursor;
-  int tListLoaded;
+  int tListLoadedState;
 
   Box tournamentBox;
 
@@ -54,20 +54,24 @@ class TournamentListBloc
             await sl.get<TournamentRepoService>().getTournamentData(cursor);
         tList = List<Tournament>.from(tournamentBox.values) ?? <Tournament>[];
       } catch (e) {
-        log("ERROR IN FETCHING TOURNAMENTS");
+        log("ERROR!!  IN FETCHING TOURNAMENTS  - $e");
         if (cursor == null) {
           yield  -1;
         }
       }
 
-      cursor = _cursor;
-      if (tList.length == 0) {
-        yield 0;
+      if (_cursor == "ERROR") {
+        yield -1;
       } else {
-        if (_cursor == null) {
-          yield 1;
+        cursor = _cursor;
+        if (tList.length == 0) {
+          yield 0;
         } else {
-          yield tListLoaded++;
+          if (_cursor == null) {
+            yield 1;
+          } else {
+            yield tListLoadedState++;
+          }
         }
       }
 
@@ -77,9 +81,8 @@ class TournamentListBloc
 
   Stream<int> refreshList() async* {
     yield -2;
-    tListLoaded = 2;
+    tListLoadedState = 2;
     tList.clear();
-    tournamentBox.clear();
     if (tournamentBox.isNotEmpty) {
       tournamentBox.clear();
     }

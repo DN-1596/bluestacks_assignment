@@ -4,6 +4,8 @@ import 'package:bluestacks_assignment/db/db.dart';
 import 'package:bluestacks_assignment/ui_components/ui_components.dart';
 import 'package:flutter/material.dart';
 import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+
 
 SliverPersistentHeader userInfo(BuildContext context, User user) {
   return SliverPersistentHeader(
@@ -51,7 +53,7 @@ class UserInfoDelegate extends SliverPersistentHeaderDelegate {
                 alignment: Alignment.centerLeft,
                 height: minHeight,
                 child: Text(
-                  "RECOMMENDED_FOR_YOU",
+                  "RECOMMENDED_FOR_YOU".localized(),
                   style: Theme.of(context).textTheme.getSubHeaderStyle(
                       color: Theme.of(context).secondaryHeaderColor),
                 ),
@@ -130,7 +132,7 @@ class UserInfoDelegate extends SliverPersistentHeaderDelegate {
                                   style: Theme.of(context).textTheme.getSubHeaderStyle(
                                       color: Theme.of(context).primaryColor)),
                               SizedBox(width: 8.0,),
-                              Text("ELO_RATING",
+                              Text("ELO_RATING".localized(),
                                   style: Theme.of(context).textTheme.getContentStyle(
                                       color: Theme.of(context).secondaryHeaderColor))
                             ],

@@ -38,7 +38,6 @@ class _DashboardChannelState extends State<DashboardChannel> {
   final GlobalKey<RefreshIndicatorState> _refreshIndicatorKey =
       new GlobalKey<RefreshIndicatorState>();
 
-  final ScrollController scrollController = ScrollController();
 
   TournamentListBloc tBloc;
 
@@ -47,13 +46,6 @@ class _DashboardChannelState extends State<DashboardChannel> {
   @override
   void initState() {
     tBloc = BlocProvider.of<TournamentListBloc>(context);
-    scrollController.addListener(() {
-      if (scrollController.position.pixels ==
-              scrollController.position.maxScrollExtent &&
-          scrollController.position.extentAfter == 0) {
-        _triggerPagination(context);
-      }
-    });
     tBloc.add(TournamentListEvent.Initiate);
     super.initState();
   }
@@ -82,7 +74,7 @@ class _DashboardChannelState extends State<DashboardChannel> {
         ),
         body: BlocListener<TournamentListBloc, int>(
           listener: (context, state) {
-            if (state > 0) {
+            if (state > -2) {
               setState(() {
                 isLoading = false;
               });

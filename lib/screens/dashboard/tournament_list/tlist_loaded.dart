@@ -43,7 +43,7 @@ class TListLoaded extends StatelessWidget {
             },
             child: SpinKitCubeGrid(
               color: Theme.of(context).hintColor,
-              size: 20,
+              size: 25,
             ),
           ),
         ));

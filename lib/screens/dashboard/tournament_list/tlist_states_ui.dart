@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+
 
 class TournamentListStateUI extends StatelessWidget {
   final int listState;
@@ -16,9 +18,9 @@ class TournamentListStateUI extends StatelessWidget {
     if (listState == -2)
       return TournamentListLoading();
     else if (listState == -1)
-      return TournamentListEmptyOrError("ERROR_IN_LOADING_TOURNAMENTS");
+      return TournamentListEmptyOrError("ERROR_IN_LOADING_TOURNAMENTS".localized());
     else if (listState == 0)
-      return TournamentListEmptyOrError("TOURNAMENTS_LIST_EMPTY");
+      return TournamentListEmptyOrError("TOURNAMENTS_LIST_EMPTY".localized());
     else if (listState == 1)
       return TListLoaded(
           BlocProvider.of<TournamentListBloc>(context).tList, true);
@@ -59,9 +61,9 @@ class TournamentListLoading extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "LOADING_TOURNAMENTS",
+                "LOADING_TOURNAMENTS".localized(),
                 style: Theme.of(context).textTheme.getContentStyle(
-                    color: Theme.of(context).secondaryHeaderColor),
+                    color: Theme.of(context).secondaryHeaderColor,size: 14),
               ),
             ),
           ),
@@ -105,7 +107,7 @@ class TournamentListEmptyOrError extends StatelessWidget {
               child: Text(
                 message,
                 style: Theme.of(context).textTheme.getContentStyle(
-                    color: Theme.of(context).secondaryHeaderColor),
+                    color: Theme.of(context).secondaryHeaderColor,size: 14),
               ),
             ),
           ),
