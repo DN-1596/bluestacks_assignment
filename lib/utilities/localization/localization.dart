@@ -10,7 +10,7 @@ final Map<String, String> en = {
   "SIGN_OUT" : "Sign Out",
   "RECOMMENDED_FOR_YOU" : "Recommended for you",
   "ELO_RATING" : "ELO Rating",
-  "TOURNAMENTS\nPLAYED": "Tournament\nPlayed",
+  "TOURNAMENTS\nPLAYED": "Tournaments\nPlayed",
   "TOURNAMENTS\nWON" : "Tournaments\nWon",
   "WINNING\nPERCENTAGE" : "Winning\nPercentage",
   "ERROR_IN_LOADING_TOURNAMENTS": "Error in loading tournaments",
@@ -20,13 +20,32 @@ final Map<String, String> en = {
   "INVALID_USERID_OR_PASSWORD" : "Invalid User Id or Password.",
   "USER_ID" : "User Id",
   "PASSWORD": "Password",
-  "INITIALIZING_APP" : "Initializing App",
   "LOADING_IN": "Loading In",
-  "LOADING_USER": "Loading User"
+  "LOADING_USER": "Loading User",
+  "LOGIN" : "LOGIN"
 };
 
 
-final Map<String, String> jap = new Map();
+final Map<String, String> jap = {
+  "PREFERRED_LANGUAGE" : "優先言語",
+  "SELECT_LANGUAGE" : "言語を選択する",
+  "SIGN_OUT" : "ログアウト",
+  "RECOMMENDED_FOR_YOU" : "あなたにおすすめ",
+  "ELO_RATING" : "ELO 評価",
+  "TOURNAMENTS\nPLAYED": "プレーした\nトーナメント",
+  "TOURNAMENTS\nWON" : "トーナメント\n優勝",
+  "WINNING\nPERCENTAGE" : "勝率\n",
+  "ERROR_IN_LOADING_TOURNAMENTS": "トーナメントの読み込み中にエラーが発生しました",
+  "TOURNAMENTS_LIST_EMPTY": "トーナメントリストが空です",
+  "LOADING_TOURNAMENTS": "トーナメントの読み込み",
+  "ENTRY_SHOULD_BE_OF_MIN_3_CHARACTERS_AND_MAX_10" : "エントリは最小3文字、最大10文字である必要があります。",
+  "INVALID_USERID_OR_PASSWORD" : "無効なユーザーIDまたはパスワード。",
+  "USER_ID" : "ユーザーID",
+  "PASSWORD": "パスワード",
+  "LOADING_IN": "読み込み中",
+  "LOADING_USER": "ユーザーの読み込み",
+  "LOGIN" : "ログインする"
+};
 
 final Map<String, Map<String, String>> languageMap = {
   kEnglish: en,

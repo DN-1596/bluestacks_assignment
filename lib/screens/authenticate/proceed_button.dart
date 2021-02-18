@@ -2,6 +2,8 @@ import 'package:bluestacks_assignment/wrapper/wrapper_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+
 
 class ProceedButton extends StatelessWidget {
   final ValueNotifier<int> uidStatus;
@@ -50,7 +52,7 @@ class ProceedButton extends StatelessWidget {
                         },
                         child: Center(
                           child: Text(
-                            "LOGIN",
+                            "LOGIN".localized(),
                             style: Theme.of(context)
                                 .textTheme
                                 .getSubHeaderStyle(
