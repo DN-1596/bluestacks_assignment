@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:bluestacks_assignment/utilities/style_guide/style_guide_barrel.dart';
+import 'package:bluestacks_assignment/utilities/localization/localization.dart';
+
 
 const Duration kExpand = Duration(milliseconds: 200);
 
@@ -17,7 +19,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
   final ValueNotifier<int> _uidStatus = new ValueNotifier(0);
   final ValueNotifier<int> _pwdStatus = new ValueNotifier(0);
   final ValueNotifier<bool> _formStatus = new ValueNotifier(true);
-  final String kErrorText = "ENTRY_SHOULD_BE_OF_MIN_3_CHARACTERS_AND_MAX_10";
+  final String kErrorText = "ENTRY_SHOULD_BE_OF_MIN_3_CHARACTERS_AND_MAX_10".localized();
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
                 .width,
             child: Center(
               child: Text(
-                "INVALID_USERNAME_OR_PASSWORD",
+                "INVALID_USERID_OR_PASSWORD".localized(),
                 style: Theme
                     .of(context)
                     .textTheme
@@ -117,7 +119,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
                       color: Colors.white,
                     ),
                   ),
-                  hintText: "USER_ID",
+                  hintText: "USER_ID".localized(),
                   hintStyle: hintStyle(context),
                   errorText: _errorText,
                   errorStyle: errorStyle(context),
@@ -161,7 +163,7 @@ class AuthenticateBasePage extends StatelessWidget implements WrapperState {
                         color: Colors.white,
                       ),
                     ),
-                    hintText: "PASSWORD",
+                    hintText: "PASSWORD".localized(),
                     hintStyle: hintStyle(context),
                     errorText: _errorText,
                     errorStyle: errorStyle(context),

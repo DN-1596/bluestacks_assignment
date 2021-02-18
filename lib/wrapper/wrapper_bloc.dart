@@ -1,4 +1,3 @@
-// States
 
 
 import 'package:bluestacks_assignment/db/db.dart';
@@ -18,12 +17,14 @@ class WrapperCubit extends Cubit<WrapperState> {
   User user;
   Box<User> _userBox;
 
-  WrapperCubit() : super(WrapperLoadingPlaceHolder()) {
+  WrapperCubit()
+      : super(WrapperLoadingPlaceHolder(
+          backgroundSvgPath: "assets/gametvlogo2.svg",
+        )) {
     initializeApp();
   }
 
   Future<void> initializeApp() async {
-    emit(WrapperLoadingPlaceHolder());
     setUpServices();
     await setUpHive();
     _userBox = sl.get<UserRepoService>().getUserBox();
@@ -47,7 +48,10 @@ class WrapperCubit extends Cubit<WrapperState> {
       sl.get<UserRepoService>().verifyUserCred(uid, pwd);
 
   Future<bool> loginUser(String uid) async {
-    emit(WrapperLoadingPlaceHolder(message: "LOADING USER",));
+    emit(WrapperLoadingPlaceHolder(
+      backgroundImgPath: "assets/among-us-wallpaper.jpg",
+      message: "LOADING_USER".localized(),
+    ));
     await sl.get<UserRepoService>().loadUserCred(uid);
     checkIfUserExists();
   }
@@ -58,11 +62,12 @@ class WrapperCubit extends Cubit<WrapperState> {
   }
 
   changeLanguage(String language) async {
-    emit(WrapperLoadingPlaceHolder(message: "LOADING IN $language",));
+    emit(WrapperLoadingPlaceHolder(
+      backgroundImgPath: "assets/among-us-wallpaper.jpg",
+      message: "LOADING_IN".localized()+ " $language",
+    ));
     await Hive.box<String>(kLanguagePref).clear();
     await Hive.box<String>(kLanguagePref).add(language);
     checkIfUserExists();
   }
-
-
 }
