@@ -70,6 +70,7 @@ class WrapperCubit extends Cubit<WrapperState> {
     ));
     await Hive.box<String>(kLanguagePref).clear();
     await Hive.box<String>(kLanguagePref).add(language);
+    await Future.delayed(Duration(seconds: 1));
     checkIfUserExists();
   }
 }
